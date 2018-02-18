@@ -1,0 +1,28 @@
+{
+  "name": "elm-design-insights",
+  "version": "0.1.0",
+  "description": "A small aggregator for interesting git logs for the Elm core packages",
+  "main": "js/index.js",
+  "scripts": {
+    "build": "elm make src/Main.elm --output=dist/app.js",
+    "compile-data": "node js/index.js",
+    "dev": "elm reactor -p 8080",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mfeineis/elm-design-insights.git"
+  },
+  "author": "Martin Feineis",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/mfeineis/elm-design-insights/issues"
+  },
+  "homepage": "https://github.com/mfeineis/elm-design-insights#readme",
+  "dependencies": {
+    "elm": "^0.18.0",
+    "nodegit": "^0.20.3",
+    "ramda": "^0.25.0"
+  },
+  "devDependencies": {}
+}
