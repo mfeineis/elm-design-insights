@@ -1,3 +1,18 @@
+Before you continue
+===================
+
+This is a small side-project that was born out of the interest in
+the design process of the Elm language. It is not an officially 
+published project and doing so would very likely be against Elm's
+creator Evan Czaplicki's wishes - see 
+[this post on reddit](https://www.reddit.com/r/elm/comments/71bp2o/comment/dn9rygg).
+So please be kind and refrain from putting this tool into
+circulation!
+
+
+* * *
+
+
 elm-design-insights
 ===================
 
