@@ -1,4 +1,4 @@
-module Data.Commit exposing (Commit, decoder)
+module Data.Commit exposing (Commit, Meta, decoder, listDecoder)
 
 import Date exposing (Date)
 import Json.Decode as Decode exposing (Decoder, Value)
@@ -7,13 +7,13 @@ import Json.Decode as Decode exposing (Decoder, Value)
 type alias Meta =
     { byPivotalAuthor : Bool
     --, elm_0_13_design : Bool
-    --, elm_0_14_design : Bool
-    --, elm_0_15_design : Bool
-    --, elm_0_16_design : Bool
-    --, elm_0_17_design : Bool
-    --, elm_0_18_design : Bool
+    , elm_0_14_design : Bool
+    , elm_0_15_design : Bool
+    , elm_0_16_design : Bool
+    , elm_0_17_design : Bool
+    , elm_0_18_design : Bool
     , elm_0_19_design : Bool
-    , isAncient : Bool
+    --, isAncient : Bool
     , mightBeInteresting : Bool
     }
 
@@ -26,10 +26,15 @@ decodeMaybeBool name =
 
 decodeMeta : Decoder Meta
 decodeMeta =
-    Decode.map4 Meta
+    Decode.map8 Meta
         (Decode.field "byPivotalAuthor" Decode.bool)
+        (Decode.field "elm_0_14_design" Decode.bool)
+        (Decode.field "elm_0_15_design" Decode.bool)
+        (Decode.field "elm_0_16_design" Decode.bool)
+        (Decode.field "elm_0_17_design" Decode.bool)
+        (Decode.field "elm_0_18_design" Decode.bool)
         (Decode.field "elm_0_19_design" Decode.bool)
-        (Decode.field "isAncient" Decode.bool)
+        --(Decode.field "isAncient" Decode.bool)
         (decodeMaybeBool "mightBeInteresting")
 
 
@@ -79,3 +84,8 @@ decoder =
         ( Decode.field "repoUrl" Decode.string )
         ( Decode.field "sha" Decode.string )
         ( Decode.field "summary" Decode.string )
+
+
+listDecoder : Decoder (List Commit)
+listDecoder =
+    Decode.list decoder
