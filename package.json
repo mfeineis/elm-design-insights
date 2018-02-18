@@ -7,6 +7,8 @@
     "build": "elm make src/Main.elm --output=dist/app.js",
     "compile-data": "node js/index.js",
     "dev": "elm reactor -p 8080",
+    "setup": "npm install && npm run build && npm run compile-data",
+    "start": "npm run build && http-server -p 8081 .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -19,10 +21,10 @@
     "url": "https://github.com/mfeineis/elm-design-insights/issues"
   },
   "homepage": "https://github.com/mfeineis/elm-design-insights#readme",
-  "dependencies": {
+  "devDependencies": {
     "elm": "^0.18.0",
+    "http-server": "^0.11.1",
     "nodegit": "^0.20.3",
     "ramda": "^0.25.0"
-  },
-  "devDependencies": {}
+  }
 }
