@@ -13,7 +13,7 @@ theme =
     , borderColor = hex "#888888"
     , borderRadius = px 3
     , primaryColor = rgb 96 181 204
-    , width = (px 800)
+    , width = px 800
     }
 
 
@@ -84,11 +84,11 @@ renderHeader model =
         [ Html.text "Potentially Interesting Commits to Elm Core Packages"
         ]
     , if List.isEmpty model.commits then
-          Html.text ""
+        Html.text ""
       else
-          pageSubTitle []
-              [ Html.text ("showing " ++ toString (List.length model.commits) ++ " commits")
-              ]
+        pageSubTitle []
+            [ Html.text ("showing " ++ toString (List.length model.commits) ++ " commits")
+            ]
     , if List.isEmpty model.toasts then
         Html.text ""
       else
@@ -191,11 +191,13 @@ renderCommitList commits =
         )
     ]
 
+
 authorName =
     styled Html.span
         [ display inlineBlock
         , fontStyle italic
         ]
+
 
 commitItem =
     styled Html.li
@@ -233,14 +235,16 @@ commitContent =
 
 commitBody =
     styled Html.div
-        [
-        ]
+        []
 
 
 serialNumber all index =
     let
-        allLength = String.length (toString all)
-        serial = String.padLeft allLength '0' (toString (index + 1))
+        allLength =
+            String.length (toString all)
+
+        serial =
+            String.padLeft allLength '0' (toString (index + 1))
     in
     styled Html.span
         [ display inlineBlock
@@ -316,10 +320,10 @@ body {
               """
             ]
             :: Html.node "link"
-                 [ Attr.href "https://fonts.googleapis.com/css?family=Roboto"
-                 , Attr.rel "stylesheet"
-                 ]
-                 []
+                [ Attr.href "https://fonts.googleapis.com/css?family=Roboto"
+                , Attr.rel "stylesheet"
+                ]
+                []
             :: content
         )
 
@@ -382,4 +386,3 @@ renderDate date =
             String.padLeft 2 '0' (toString (Date.minute date))
     in
     year ++ "-" ++ month ++ "-" ++ day ++ " " ++ hour ++ ":" ++ min
-

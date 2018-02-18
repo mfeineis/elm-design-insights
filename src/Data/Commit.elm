@@ -6,6 +6,7 @@ import Json.Decode as Decode exposing (Decoder, Value)
 
 type alias Meta =
     { byPivotalAuthor : Bool
+
     --, elm_0_13_design : Bool
     , elm_0_14_design : Bool
     , elm_0_15_design : Bool
@@ -13,6 +14,7 @@ type alias Meta =
     , elm_0_17_design : Bool
     , elm_0_18_design : Bool
     , elm_0_19_design : Bool
+
     --, isAncient : Bool
     , mightBeInteresting : Bool
     }
@@ -20,7 +22,7 @@ type alias Meta =
 
 decodeMaybeBool : String -> Decoder Bool
 decodeMaybeBool name =
-    (Decode.maybe (Decode.field name Decode.bool))
+    Decode.maybe (Decode.field name Decode.bool)
         |> Decode.andThen (Maybe.withDefault False >> Decode.succeed)
 
 
@@ -40,6 +42,7 @@ decodeMeta =
 
 type alias Commit =
     { authorName : String
+
     --, authorEmail : String
     --, authorInfo : String
     , body : String
@@ -54,7 +57,7 @@ type alias Commit =
 
 decodeBody : Decoder String
 decodeBody =
-    (Decode.maybe (Decode.field "body" Decode.string))
+    Decode.maybe (Decode.field "body" Decode.string)
         |> Decode.andThen (Maybe.withDefault "" >> Decode.succeed)
 
 
@@ -63,7 +66,7 @@ decodeDate =
     Decode.string
         |> Decode.andThen
             (\s ->
-                case (Date.fromString s) of
+                case Date.fromString s of
                     Ok date ->
                         Decode.succeed date
 
@@ -71,19 +74,20 @@ decodeDate =
                         Decode.fail reason
             )
 
+
 decoder : Decoder Commit
 decoder =
     Decode.map8 Commit
         --( Decode.field "authorEmail" Decode.string )
-        ( Decode.field "authorName" Decode.string )
+        (Decode.field "authorName" Decode.string)
         --( Decode.field "authorInfo" Decode.string )
-        ( decodeBody )
-        ( Decode.field "date" decodeDate )
-        ( Decode.field "meta" decodeMeta )
-        ( Decode.field "repoName" Decode.string )
-        ( Decode.field "repoUrl" Decode.string )
-        ( Decode.field "sha" Decode.string )
-        ( Decode.field "summary" Decode.string )
+        decodeBody
+        (Decode.field "date" decodeDate)
+        (Decode.field "meta" decodeMeta)
+        (Decode.field "repoName" Decode.string)
+        (Decode.field "repoUrl" Decode.string)
+        (Decode.field "sha" Decode.string)
+        (Decode.field "summary" Decode.string)
 
 
 listDecoder : Decoder (List Commit)

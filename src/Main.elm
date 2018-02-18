@@ -64,12 +64,15 @@ update msg model =
 view : Model -> Html Msg
 view model =
     let
-        header = View.renderHeader model
+        header =
+            View.renderHeader model
+
         lastUpdated =
             model.commits
                 |> List.reverse
                 |> List.head
                 |> Maybe.map .date
+
         abstract =
             [ View.abstract []
                 [ View.text
@@ -80,13 +83,14 @@ view model =
                     list but is sporadically generated and served statically.
                     """
                 , case lastUpdated of
-                      Just timestamp ->
-                          View.text ("Last tracked commit timestamp is " ++ View.renderDate timestamp)
+                    Just timestamp ->
+                        View.text ("Last tracked commit timestamp is " ++ View.renderDate timestamp)
 
-                      Nothing ->
-                          View.empty
+                    Nothing ->
+                        View.empty
                 ]
             ]
+
         footer =
             [ View.renderFooter []
                 [ View.text "View powered by Elm"
@@ -97,6 +101,7 @@ view model =
                     ]
                 ]
             ]
+
         commitList =
             if List.isEmpty model.commits then
                 [ View.spinner []
