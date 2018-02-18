@@ -12,23 +12,83 @@ theme =
     { border = border3 (px 1) solid (hex "#888888")
     , borderColor = hex "#888888"
     , borderRadius = px 3
+    , primaryColor = rgb 96 181 204
     , width = (px 800)
     }
+
+
+text =
+    Html.text
+
+
+empty =
+    Html.text ""
 
 
 pageTitle =
     styled Html.h1
         [ margin2 (px 20) auto
-        , width theme.width
+        , maxWidth theme.width
+        , width (pct 90)
+        ]
+
+
+pageSubTitle =
+    styled Html.h2
+        [ margin2 (px 10) auto
+        , maxWidth theme.width
+        , width (pct 90)
+        ]
+
+
+abstract =
+    styled Html.div
+        [ margin2 (px 10) auto
+        , maxWidth theme.width
+        , width (pct 90)
+        ]
+
+
+renderFooter =
+    styled Html.div
+        [ color theme.borderColor
+        , margin2 (px 20) auto
+        , paddingBottom (px 20)
+        , paddingTop (px 20)
+        , maxWidth theme.width
+        , width (pct 90)
+        ]
+
+
+footerLink =
+    styled Html.a
+        [ color theme.primaryColor
+        , display inlineBlock
+        , float right
+        , marginTop (px 4)
+        , textDecoration underline
+        ]
+
+
+spinner =
+    styled Html.div
+        [ margin2 (px 20) auto
+        , maxWidth theme.width
+        , width (pct 90)
         ]
 
 
 renderHeader : { a | commits : List Commit, toasts : List String } -> List (Html msg)
 renderHeader model =
     [ pageTitle []
-        [ Html.text
-            ("Interesting Commits to Elm | showing " ++ toString (List.length model.commits))
+        [ Html.text "Potentially Interesting Commits to Elm Core Packages"
         ]
+    , if List.isEmpty model.commits then
+          Html.text ""
+      else
+          pageSubTitle []
+              [ Html.text ("showing " ++ toString (List.length model.commits) ++ " commits")
+              ]
     , if List.isEmpty model.toasts then
         Html.text ""
       else
@@ -99,7 +159,7 @@ repoNameLabel =
 
 commitLink =
     styled Html.a
-        [ color (rgb 96 181 204)
+        [ color theme.primaryColor
         , display inlineBlock
         , marginRight (px 4)
         , textDecoration underline
@@ -144,8 +204,9 @@ commitItem =
         , borderRadius theme.borderRadius
         , boxShadow4 zero (px 1) (px 3) (hex "#aaaaaa")
         , margin2 (px 20) auto
+        , maxWidth theme.width
         , paddingBottom (px 10)
-        , width theme.width
+        , width (pct 90)
         ]
 
 
@@ -191,6 +252,15 @@ serialNumber all index =
         ]
 
 
+repoLink =
+    styled Html.a
+        [ color theme.primaryColor
+        , display inlineBlock
+        , marginRight (px 4)
+        , textDecoration none
+        ]
+
+
 renderCommit : Int -> Int -> Commit -> Html msg
 renderCommit all index commit =
     commitItem []
@@ -203,7 +273,8 @@ renderCommit all index commit =
                 [ Html.text (renderDate commit.date)
                 ]
             , repoNameLabel []
-                [ Html.text commit.repoName
+                [ repoLink [ Attr.href commit.repoUrl ]
+                    [ Html.text commit.repoName ]
                 ]
             , authorName [] [ Html.text commit.authorName ]
             , renderElmVersion commit.meta

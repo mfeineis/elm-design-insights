@@ -3,6 +3,8 @@ module Main exposing (main)
 import Data.Commit as Commit exposing (Commit)
 import Html
 import Html.Styled as Styled exposing (Html)
+import Html.Styled.Attributes as Attr
+import Html.Styled.Events as Styled
 import Http
 import View
 
@@ -41,20 +43,17 @@ init flags =
     )
 
 
-filterCommit : Commit -> Bool
-filterCommit commit =
-    True
-    --commit.meta.mightBeInteresting && commit.meta.elm_0_19_design
-
-
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
+    let
+        filterCommit commit =
+            commit.meta.mightBeInteresting
+    in
     case msg of
         CommitsReceived (Ok allCommits) ->
             let
                 interesting =
                     List.filter filterCommit allCommits
-                        --|> List.take 20
             in
             ( { model | commits = interesting }, Cmd.none )
 
@@ -66,8 +65,46 @@ view : Model -> Html Msg
 view model =
     let
         header = View.renderHeader model
+        lastUpdated =
+            model.commits
+                |> List.reverse
+                |> List.head
+                |> Maybe.map .date
+        abstract =
+            [ View.abstract []
+                [ View.text
+                    """
+                    This page shows all commits to Elm core package repositories
+                    that may contain interesting thoughts and decisions regarding the
+                    design process of the Elm language. Note that this is not a live
+                    list but is sporadically generated and served statically.
+                    """
+                , case lastUpdated of
+                      Just timestamp ->
+                          View.text ("Last tracked commit timestamp is " ++ View.renderDate timestamp)
+
+                      Nothing ->
+                          View.empty
+                ]
+            ]
+        footer =
+            [ View.renderFooter []
+                [ View.text "View powered by Elm"
+                , View.footerLink
+                    [ Attr.href "https://github.com/mfeineis/elm-design-insights"
+                    ]
+                    [ View.text "https://github.com/mfeineis/elm-design-insights"
+                    ]
+                ]
+            ]
         commitList =
-            View.renderCommitList model.commits
+            if List.isEmpty model.commits then
+                [ View.spinner []
+                    [ View.text "Please stand by, this might take a moment..."
+                    ]
+                ]
+            else
+                View.renderCommitList model.commits
     in
     View.withCssReset
-        (header ++ commitList)
+        (header ++ abstract ++ footer ++ commitList)
