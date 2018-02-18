@@ -1,13 +1,14 @@
 # Custom
+dist/
 private/
 repos/
 
-# you can skip this first one if it is not already excluded by prior patterns
-!dist/
-
-dist/*
-!dist/app.js
-!dist/result-latest.json
+## you can skip this first one if it is not already excluded by prior patterns
+#!dist/
+#
+#dist/*
+#!dist/app.js
+#!dist/result-latest.json
 
 # elm-package generated files
 elm-stuff
