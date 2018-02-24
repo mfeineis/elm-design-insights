@@ -106,31 +106,31 @@ renderElmVersion : Meta -> Html msg
 renderElmVersion meta =
     if meta.elm_0_19_design then
         elmVersionLabel []
-            [ Html.text "Elm 0.19"
+            [ Html.text "Designing Elm 0.19"
             ]
     else if meta.elm_0_18_design then
         elmVersionLabel []
-            [ Html.text "Elm 0.18"
+            [ Html.text "Designing Elm 0.18"
             ]
     else if meta.elm_0_17_design then
         elmVersionLabel []
-            [ Html.text "Elm 0.17"
+            [ Html.text "Designing Elm 0.17"
             ]
     else if meta.elm_0_16_design then
         elmVersionLabel []
-            [ Html.text "Elm 0.16"
+            [ Html.text "Designing Elm 0.16"
             ]
     else if meta.elm_0_15_design then
         elmVersionLabel []
-            [ Html.text "Elm 0.15"
+            [ Html.text "Designing Elm 0.15"
             ]
     else if meta.elm_0_14_design then
         elmVersionLabel []
-            [ Html.text "Elm 0.14"
+            [ Html.text "Designing Elm 0.14"
             ]
     else
         elmVersionLabel []
-            [ Html.text "Ancient"
+            [ Html.text "Way back"
             ]
 
 
