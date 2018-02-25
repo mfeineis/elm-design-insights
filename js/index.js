@@ -27,7 +27,9 @@ const repoUrls = [
     `https://github.com/elm-lang/html`,
     `https://github.com/elm-lang/http`,
     `https://github.com/elm-lang/json`,
+    //`https://github.com/elm-lang/kernel`, // Not public but referenced in elm-lang/elm-compiler
     `https://github.com/elm-lang/url`,
+    //`https://github.com/elm-lang/virtual-css`, // On hold, no longer referenced in elm-lang/elm-compiler
     `https://github.com/elm-lang/virtual-dom`,
 ];
 
