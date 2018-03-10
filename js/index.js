@@ -24,10 +24,15 @@ const repoUrls = [
     `https://github.com/elm-lang/browser`,
     `https://github.com/elm-lang/core`,
     `https://github.com/elm-lang/elm-compiler`,
+    `https://github.com/elm-lang/error-message-catalog`,
     `https://github.com/elm-lang/html`,
     `https://github.com/elm-lang/http`,
     `https://github.com/elm-lang/json`,
     //`https://github.com/elm-lang/kernel`, // Not public but referenced in elm-lang/elm-compiler
+    `https://github.com/elm-lang/parser`,
+    `https://github.com/elm-lang/projects`,
+    `https://github.com/elm-lang/random`,
+    `https://github.com/elm-lang/time`,
     `https://github.com/elm-lang/url`,
     //`https://github.com/elm-lang/virtual-css`, // On hold, no longer referenced in elm-lang/elm-compiler
     `https://github.com/elm-lang/virtual-dom`,
@@ -59,6 +64,8 @@ const release_0_16 = new Date("2015-11-22T00:00:00Z").getTime();
 const release_0_17 = new Date("2016-05-06T00:00:00Z").getTime();
 const release_0_18 = new Date("2016-11-11T00:00:00Z").getTime();
 
+const march2018 = new Date("2018-03-01T00:00:00Z").getTime();
+
 const isCommitInRange = min => max => commit => {
     const date = new Date(commit.date()).getTime();
     return date >= min && date < max;
@@ -88,7 +95,8 @@ const isMergeCommit = commit => /merge pull request/gi.test(commit.summary());
 
 const mightBeInteresting = commit => !!(
     /init(ial)?\s+commit/gi.test(commit.summary()) ||
-    (byPivotalAuthor(commit) && commit.body() && !isMergeCommit(commit))
+    (byPivotalAuthor(commit) && commit.body() && !isMergeCommit(commit)) ||
+    new Date(commit.date()).getTime() >= march2018
 );
 
 const extractCommitInfo = ({ repoName, repoUrl }) => commit => ({
