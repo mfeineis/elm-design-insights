@@ -44,6 +44,7 @@ const repoUrls = [
     `https://github.com/elm-lang/virtual-dom`,
     `https://github.com/elm-lang/websocket`,
     `https://github.com/elm-lang/window`,
+    `https://github.com/elm-tools/parser`,
 ];
 
 const timestamp = createTimestamp(new Date());
