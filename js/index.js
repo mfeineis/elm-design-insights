@@ -23,6 +23,7 @@ const repoUrls = [
     `https://github.com/elm-community/webgl`,
     `https://github.com/elm-lang/browser`,
     `https://github.com/elm-lang/core`,
+    `https://github.com/elm-lang/dom`,
     `https://github.com/elm-lang/elm-compiler`,
     `https://github.com/elm-lang/elm-make`,
     `https://github.com/elm-lang/elm-platform`,
@@ -37,6 +38,7 @@ const repoUrls = [
     `https://github.com/elm-lang/regex`,
     `https://github.com/elm-lang/time`,
     `https://github.com/elm-lang/url`,
+    `https://github.com/elm-lang/websocket`,
     //`https://github.com/elm-lang/virtual-css`, // On hold, no longer referenced in elm-lang/elm-compiler
     `https://github.com/elm-lang/virtual-dom`,
     `https://github.com/elm-lang/websocket`,
