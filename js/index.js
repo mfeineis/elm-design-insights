@@ -19,6 +19,8 @@ const {
 const { createTimestamp, rimraf } = require("./utils");
 
 const repoUrls = [
+    `https://github.com/avh4/elm-format`,
+    `https://github.com/avh4/elm-upgrade`,
     `https://github.com/elm-community/linear-algebra`,
     `https://github.com/elm-community/webgl`,
     `https://github.com/elm-lang/browser`,
@@ -38,7 +40,6 @@ const repoUrls = [
     `https://github.com/elm-lang/regex`,
     `https://github.com/elm-lang/time`,
     `https://github.com/elm-lang/url`,
-    `https://github.com/elm-lang/websocket`,
     //`https://github.com/elm-lang/virtual-css`, // On hold, no longer referenced in elm-lang/elm-compiler
     `https://github.com/elm-lang/virtual-dom`,
     `https://github.com/elm-lang/websocket`,
