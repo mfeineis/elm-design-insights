@@ -23,6 +23,7 @@ const repoUrls = [
     `https://github.com/avh4/elm-upgrade`,
     `https://github.com/elm-community/linear-algebra`,
     `https://github.com/elm-community/webgl`,
+    `https://github.com/elm-explorations/markdown`,
     `https://github.com/elm-lang/browser`,
     `https://github.com/elm-lang/core`,
     `https://github.com/elm-lang/dom`,
@@ -36,6 +37,7 @@ const repoUrls = [
     //`https://github.com/elm-lang/kernel`, // Not public but referenced in elm-lang/elm-compiler
     `https://github.com/elm-lang/parser`,
     `https://github.com/elm-lang/projects`,
+    `https://github.com/elm-lang/project-metadata-utils`,
     `https://github.com/elm-lang/random`,
     `https://github.com/elm-lang/regex`,
     `https://github.com/elm-lang/time`,
