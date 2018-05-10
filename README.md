@@ -26,7 +26,6 @@ Building locally
 * `git clone https://github.com/mfeineis/elm-design-insights`
 * `cd elm-design-insights`
 * `npm run setup`
-* `npm start`
 * visit [http://127.0.0.1:8081]()
 
 Development is done with `elm-reactor`, just use `npm run dev`.

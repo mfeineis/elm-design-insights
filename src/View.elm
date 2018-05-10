@@ -2,7 +2,7 @@ module View exposing (..)
 
 import Css exposing (..)
 import Data.Commit as Commit exposing (Commit, Meta)
-import Date exposing (Date, Month(..))
+import Time exposing (Posix, Month(..), utc)
 import Html.Styled as Html exposing (Html, styled)
 import Html.Styled.Attributes as Attr
 import Markdown
@@ -87,7 +87,7 @@ renderHeader model =
         Html.text ""
       else
         pageSubTitle []
-            [ Html.text ("showing " ++ toString (List.length model.commits) ++ " commits")
+            [ Html.text ("showing " ++ String.fromInt (List.length model.commits) ++ " commits")
             ]
     , if List.isEmpty model.toasts then
         Html.text ""
@@ -104,7 +104,11 @@ renderToast toast =
 
 renderElmVersion : Meta -> Html msg
 renderElmVersion meta =
-    if meta.elm_0_19_design then
+    if meta.elm_0_19_public_alpha then
+        elmVersionLabel []
+            [ Html.text "Elm 0.19 Public Alpha"
+            ]
+    else if meta.elm_0_19_design then
         elmVersionLabel []
             [ Html.text "Designing Elm 0.19"
             ]
@@ -124,10 +128,10 @@ renderElmVersion meta =
         elmVersionLabel []
             [ Html.text "Designing Elm 0.15"
             ]
-    else if meta.elm_0_14_design then
-        elmVersionLabel []
-            [ Html.text "Designing Elm 0.14"
-            ]
+    --else if meta.elm_0_14_design then
+    --    elmVersionLabel []
+    --        [ Html.text "Designing Elm 0.14"
+    --        ]
     else
         elmVersionLabel []
             [ Html.text "Way back"
@@ -241,10 +245,10 @@ commitBody =
 serialNumber all index =
     let
         allLength =
-            String.length (toString all)
+            String.length (String.fromInt all)
 
         serial =
-            String.padLeft allLength '0' (toString (index + 1))
+            String.padLeft allLength '0' (String.fromInt (index + 1))
     in
     styled Html.span
         [ display inlineBlock
@@ -252,7 +256,7 @@ serialNumber all index =
         , paddingRight (px 8)
         ]
         []
-        [ Html.text ("#" ++ serial ++ "/" ++ toString all)
+        [ Html.text ("#" ++ serial ++ "/" ++ String.fromInt all)
         ]
 
 
@@ -367,22 +371,22 @@ mapMonth month =
             12
 
 
-renderDate : Date -> String
+renderDate : Posix -> String
 renderDate date =
     let
         year =
-            String.padLeft 4 '0' (toString (Date.year date))
+            String.padLeft 4 '0' (String.fromInt (Time.toYear utc date))
 
         month =
-            String.padLeft 2 '0' (toString (mapMonth (Date.month date)))
+            String.padLeft 2 '0' (String.fromInt (mapMonth (Time.toMonth utc date)))
 
         day =
-            String.padLeft 2 '0' (toString (Date.day date))
+            String.padLeft 2 '0' (String.fromInt (Time.toDay utc date))
 
         hour =
-            String.padLeft 2 '0' (toString (Date.hour date))
+            String.padLeft 2 '0' (String.fromInt (Time.toHour utc date))
 
         min =
-            String.padLeft 2 '0' (toString (Date.minute date))
+            String.padLeft 2 '0' (String.fromInt (Time.toMinute utc date))
     in
     year ++ "-" ++ month ++ "-" ++ day ++ " " ++ hour ++ ":" ++ min

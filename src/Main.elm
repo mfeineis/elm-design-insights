@@ -1,10 +1,10 @@
 module Main exposing (main)
 
+import Browser
 import Data.Commit as Commit exposing (Commit)
 import Html
 import Html.Styled as Styled exposing (Html)
 import Html.Styled.Attributes as Attr
-import Html.Styled.Events as Styled
 import Http
 import View
 
@@ -23,17 +23,21 @@ type alias Model =
     }
 
 
-main : Program Never Model Msg
+main : Program Flags Model Msg
 main =
-    Html.program
-        { init = init {}
+    Browser.fullscreen
+        { init = init
+        , onNavigation = Nothing
         , subscriptions = \_ -> Sub.none
         , update = update
-        , view = view >> Styled.toUnstyled
+        , view = \m ->
+             { title = "Elm Design Insights"
+             , body = [ (view >> Styled.toUnstyled) m ]
+             }
         }
 
 
-init : Flags -> ( Model, Cmd Msg )
+init : Browser.Env Flags -> ( Model, Cmd Msg )
 init flags =
     ( { commits = []
       , toasts = []
@@ -57,8 +61,8 @@ update msg model =
             in
             ( { model | commits = interesting }, Cmd.none )
 
-        CommitsReceived (Err err) ->
-            ( { model | toasts = toString err :: model.toasts }, Cmd.none )
+        CommitsReceived (Err _) ->
+            ( { model | toasts = "Commits could not be fetched" :: model.toasts }, Cmd.none )
 
 
 view : Model -> Html Msg

@@ -74,6 +74,7 @@ const release_0_15 = new Date("2015-04-20T00:00:00Z").getTime();
 const release_0_16 = new Date("2015-11-22T00:00:00Z").getTime();
 const release_0_17 = new Date("2016-05-06T00:00:00Z").getTime();
 const release_0_18 = new Date("2016-11-11T00:00:00Z").getTime();
+const alpha_0_19 = new Date("2018-05-10T00:00:00Z").getTime();
 
 const march2018 = new Date("2018-03-01T00:00:00Z").getTime();
 
@@ -89,7 +90,8 @@ const elm_0_15_design = isCommitInRange(release_0_14)(release_0_15);
 const elm_0_16_design = isCommitInRange(release_0_15)(release_0_16);
 const elm_0_17_design = isCommitInRange(release_0_16)(release_0_17);
 const elm_0_18_design = isCommitInRange(release_0_17)(release_0_18);
-const elm_0_19_design = isCommitInRange(release_0_18)(Date.now());
+const elm_0_19_design = isCommitInRange(release_0_18)(alpha_0_19);
+const elm_0_19_public_alpha = isCommitInRange(alpha_0_19)(Date.now());
 
 const getAllCommits = T;
 
@@ -110,12 +112,14 @@ const mightBeInteresting = commit => !!(
     new Date(commit.date()).getTime() >= march2018
 );
 
+const dateToPosix = date => date.getTime() / 1000 | 0;
+
 const extractCommitInfo = ({ repoName, repoUrl }) => commit => ({
     authorEmail: commit.author().email(),
     authorName: commit.author().name(),
     authorInfo: commit.author().toString(),
     body: commit.body(),
-    date: commit.date(),
+    date: dateToPosix(commit.date()),
     meta: {
         byPivotalAuthor: byPivotalAuthor(commit),
         elm_0_13_design: elm_0_13_design(commit),
@@ -125,6 +129,7 @@ const extractCommitInfo = ({ repoName, repoUrl }) => commit => ({
         elm_0_17_design: elm_0_17_design(commit),
         elm_0_18_design: elm_0_18_design(commit),
         elm_0_19_design: elm_0_19_design(commit),
+        elm_0_19_public_alpha: elm_0_19_public_alpha(commit),
         isAncient: isAncient(commit),
         mightBeInteresting: mightBeInteresting(commit),
     },
