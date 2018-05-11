@@ -67,7 +67,7 @@ decodeDate : Decoder Posix
 decodeDate =
     Decode.int
         |> Decode.andThen
-            (\millis -> Decode.succeed (Time.millisToPosix millis))
+            (\posix -> Decode.succeed (Time.millisToPosix (1000 * posix)))
 
 
 decoder : Decoder Commit
