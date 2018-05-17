@@ -26,7 +26,7 @@
   "devDependencies": {
     "google-closure-compiler": "^20180506.0.0",
     "http-server": "^0.11.1",
-    "nodegit": "^0.20.3",
+    "nodegit": "^0.22.0",
     "ramda": "^0.25.0",
     "uglify-js": "^3.3.24"
   },
