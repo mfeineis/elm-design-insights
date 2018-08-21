@@ -25,9 +25,8 @@ type alias Model =
 
 main : Program Flags Model Msg
 main =
-    Browser.fullscreen
+    Browser.document
         { init = init
-        , onNavigation = Nothing
         , subscriptions = \_ -> Sub.none
         , update = update
         , view = \m ->
@@ -37,7 +36,7 @@ main =
         }
 
 
-init : Browser.Env Flags -> ( Model, Cmd Msg )
+init : Flags -> ( Model, Cmd Msg )
 init flags =
     ( { commits = []
       , toasts = []

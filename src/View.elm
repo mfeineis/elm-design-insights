@@ -104,7 +104,11 @@ renderToast toast =
 
 renderElmVersion : Meta -> Html msg
 renderElmVersion meta =
-    if meta.elm_0_19_public_alpha then
+    if meta.elm_0_20_design then
+        elmVersionLabel []
+            [ Html.text "Designing Elm 0.20"
+            ]
+    else if meta.elm_0_19_public_alpha then
         elmVersionLabel []
             [ Html.text "Elm 0.19 Public Alpha"
             ]
@@ -124,10 +128,10 @@ renderElmVersion meta =
         elmVersionLabel []
             [ Html.text "Designing Elm 0.16"
             ]
-    else if meta.elm_0_15_design then
-        elmVersionLabel []
-            [ Html.text "Designing Elm 0.15"
-            ]
+    --else if meta.elm_0_15_design then
+    --    elmVersionLabel []
+    --        [ Html.text "Designing Elm 0.15"
+    --        ]
     --else if meta.elm_0_14_design then
     --    elmVersionLabel []
     --        [ Html.text "Designing Elm 0.14"
