@@ -9,12 +9,13 @@ type alias Meta =
 
     --, elm_0_13_design : Bool
     --, elm_0_14_design : Bool
-    , elm_0_15_design : Bool
+    --, elm_0_15_design : Bool
     , elm_0_16_design : Bool
     , elm_0_17_design : Bool
     , elm_0_18_design : Bool
     , elm_0_19_design : Bool
     , elm_0_19_public_alpha : Bool
+    , elm_0_20_design : Bool
 
     --, isAncient : Bool
     , mightBeInteresting : Bool
@@ -32,12 +33,13 @@ decodeMeta =
     Decode.map8 Meta
         (Decode.field "byPivotalAuthor" Decode.bool)
         --(Decode.field "elm_0_14_design" Decode.bool)
-        (Decode.field "elm_0_15_design" Decode.bool)
+        --(Decode.field "elm_0_15_design" Decode.bool)
         (Decode.field "elm_0_16_design" Decode.bool)
         (Decode.field "elm_0_17_design" Decode.bool)
         (Decode.field "elm_0_18_design" Decode.bool)
         (Decode.field "elm_0_19_design" Decode.bool)
         (Decode.field "elm_0_19_public_alpha" Decode.bool)
+        (Decode.field "elm_0_20_design" Decode.bool)
         --(Decode.field "isAncient" Decode.bool)
         (decodeMaybeBool "mightBeInteresting")
 

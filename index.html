@@ -5,10 +5,11 @@
     <title>Elm Design Insights</title>
 </head>
 <body>
+    <div id="root"></div>
     <script src="dist/app.js"></script>
     <script>
 
-    Elm.Main.fullscreen();
+    Elm.Main.init({ node: document.querySelector('#root') });
 
     </script>
 </body>

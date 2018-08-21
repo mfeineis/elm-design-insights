@@ -24,28 +24,29 @@ const repoUrls = [
     `https://github.com/elm-community/linear-algebra`,
     `https://github.com/elm-community/webgl`,
     `https://github.com/elm-explorations/markdown`,
-    `https://github.com/elm-lang/browser`,
-    `https://github.com/elm-lang/core`,
-    `https://github.com/elm-lang/dom`,
-    `https://github.com/elm-lang/elm-compiler`,
-    `https://github.com/elm-lang/elm-make`,
-    `https://github.com/elm-lang/elm-platform`,
-    `https://github.com/elm-lang/error-message-catalog`,
-    `https://github.com/elm-lang/html`,
-    `https://github.com/elm-lang/http`,
-    `https://github.com/elm-lang/json`,
-    //`https://github.com/elm-lang/kernel`, // Not public but referenced in elm-lang/elm-compiler
-    `https://github.com/elm-lang/parser`,
-    `https://github.com/elm-lang/projects`,
-    `https://github.com/elm-lang/project-metadata-utils`,
-    `https://github.com/elm-lang/random`,
-    `https://github.com/elm-lang/regex`,
-    `https://github.com/elm-lang/time`,
-    `https://github.com/elm-lang/url`,
-    //`https://github.com/elm-lang/virtual-css`, // On hold, no longer referenced in elm-lang/elm-compiler
-    `https://github.com/elm-lang/virtual-dom`,
-    `https://github.com/elm-lang/websocket`,
-    `https://github.com/elm-lang/window`,
+    `https://github.com/elm-explorations/elm-test`,
+    `https://github.com/elm/browser`,
+    `https://github.com/elm/core`,
+    `https://github.com/elm/dom`,
+    `https://github.com/elm/compiler`,
+    //`https://github.com/elm/elm-make`,
+    //`https://github.com/elm/elm-platform`,
+    `https://github.com/elm/error-message-catalog`,
+    `https://github.com/elm/html`,
+    `https://github.com/elm/http`,
+    `https://github.com/elm/json`,
+    //`https://github.com/elm/kernel`, // Not public but referenced in elm-lang/elm-compiler
+    `https://github.com/elm/parser`,
+    `https://github.com/elm/projects`,
+    `https://github.com/elm/project-metadata-utils`,
+    `https://github.com/elm/random`,
+    `https://github.com/elm/regex`,
+    `https://github.com/elm/time`,
+    `https://github.com/elm/url`,
+    //`https://github.com/elm/virtual-css`, // On hold, no longer referenced in elm-lang/elm-compiler
+    `https://github.com/elm/virtual-dom`,
+    `https://github.com/elm/websocket`,
+    `https://github.com/elm/window`,
     `https://github.com/elm-tools/parser`,
 ];
 
@@ -75,6 +76,7 @@ const release_0_16 = new Date("2015-11-22T00:00:00Z").getTime();
 const release_0_17 = new Date("2016-05-06T00:00:00Z").getTime();
 const release_0_18 = new Date("2016-11-11T00:00:00Z").getTime();
 const alpha_0_19 = new Date("2018-05-10T00:00:00Z").getTime();
+const release_0_19 = new Date("2018-08-21T00:00:00Z").getTime();
 
 const march2018 = new Date("2018-03-01T00:00:00Z").getTime();
 
@@ -91,7 +93,8 @@ const elm_0_16_design = isCommitInRange(release_0_15)(release_0_16);
 const elm_0_17_design = isCommitInRange(release_0_16)(release_0_17);
 const elm_0_18_design = isCommitInRange(release_0_17)(release_0_18);
 const elm_0_19_design = isCommitInRange(release_0_18)(alpha_0_19);
-const elm_0_19_public_alpha = isCommitInRange(alpha_0_19)(Date.now());
+const elm_0_19_public_alpha = isCommitInRange(alpha_0_19)(release_0_19);
+const elm_0_20_design = isCommitInRange(release_0_19)(Date.now());
 
 const getAllCommits = T;
 
@@ -130,6 +133,7 @@ const extractCommitInfo = ({ repoName, repoUrl }) => commit => ({
         elm_0_18_design: elm_0_18_design(commit),
         elm_0_19_design: elm_0_19_design(commit),
         elm_0_19_public_alpha: elm_0_19_public_alpha(commit),
+        elm_0_20_design: elm_0_20_design(commit),
         isAncient: isAncient(commit),
         mightBeInteresting: mightBeInteresting(commit),
     },
