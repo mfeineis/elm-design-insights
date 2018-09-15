@@ -26,6 +26,7 @@ const repoUrls = [
     `https://github.com/elm-explorations/markdown`,
     `https://github.com/elm-explorations/elm-test`,
     `https://github.com/elm/browser`,
+    `https://github.com/elm/bytes`,
     `https://github.com/elm/core`,
     `https://github.com/elm/dom`,
     `https://github.com/elm/compiler`,
