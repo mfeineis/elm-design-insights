@@ -8,8 +8,7 @@
     "clean": "rm -rf node_modules/ && rm -rf dist/ && rm -rf repos/",
     "compile-data": "node js/index.js",
     "dev": "elm reactor --port=8080",
-    "link-custom": "cp -p ./private/elm ./node_modules/.bin/elm",
-    "setup": "npm run clean && npm install && npm run link-custom && npm run build && npm run compile-data && npm start",
+    "setup": "npm run clean && npm install && npm run build && npm run compile-data && npm start",
     "start": "npm run build && http-server -p 8081 .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,14 +23,11 @@
   },
   "homepage": "https://github.com/mfeineis/elm-design-insights#readme",
   "devDependencies": {
+    "elm": "^0.19.0-bugfix6",
     "google-closure-compiler": "^20180506.0.0",
     "http-server": "^0.11.1",
-    "nodegit": "^0.22.0",
+    "nodegit": "^0.24.1",
     "ramda": "^0.25.0",
     "uglify-js": "^3.3.24"
-  },
-  "peerDependencies": {
-    "elm": "^0.19.0"
-  },
-  "dependencies": {}
+  }
 }
